@@ -1,35 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React, { useState, useEffect } from 'react'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+import ChatListItem from './components/ChatListItem'
+
+import DonutLargeIcon from '@material-ui/icons/DonutLarge'
+import ChatIcon from '@material-ui/icons/Chat'
+import MoreVertIcon from '@material-ui/icons/MoreVert'
+import SearchIcon from '@material-ui/icons/Search'
+
+export default () => {
+
+  const [chatlist, setChatlist] = useState([{},{},{},{},{},{},{},{}])
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app-window">
+      <div className="sidebar">
+        <header>
+          <img className='header--avatar' src='https://www.w3schools.com/howto/img_avatar2.png' alt='' />
+          <div className="header--buttons">
+            <div className="header--btn">
+              <DonutLargeIcon style={{color: '#919191'}} />
+            </div>
+            <div className="header--btn">
+              <ChatIcon style={{color: '#919191'}} />
+            </div>
+            <div className="header--btn">
+              <MoreVertIcon style={{color: '#919191'}} />
+            </div>
+          </div>
+        </header>
+
+        <div className="search">
+          <div className="search--input">
+            <SearchIcon fontSize='small' style={{color: '#919191'}} />
+            <input type="search" placeholder='Procurar ou começar uma nova conversa' />
+          </div>
+        </div>
+
+        <div className="chatlist">
+          {chatlist.map((item, key) => (
+            <ChatListItem 
+              key={key}
+            />
+          ))}
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+      <div className="contentarea">
+        ...
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
-
-export default App
